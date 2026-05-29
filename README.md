@@ -230,6 +230,34 @@ Root is persistent if `su -c id` still returns `uid=0(root)` after reboot.
 - Keep raw partition backups offline and out of GitHub.
 - This is an old Android 4.4 device. Avoid exposing root services to untrusted networks.
 
+## Next Steps: Daily-Driver Software
+
+Once root is verified, the device is usable but the stock Netronix launcher (`ntx.home`) and bundled apps are minimal. The following sideloads have been validated on this exact build (Android 4.4.2 / API 19, ARMv7, `ntx_6sl`):
+
+- **KOReader** (`org.koreader.launcher`): excellent e-ink-tuned reader for EPUB / PDF / CBZ / MOBI. The official ARM release builds (e.g. `koreader-android-arm-v2026.03.apk`) install cleanly on KitKat:
+  ```sh
+  adb install koreader-android-arm-v2026.03.apk
+  ```
+  Source: <https://github.com/koreader/koreader/releases>
+
+- **eLauncher (KitKat backport)** (`me.pompel.elauncher`): minimal e-ink-oriented launcher. The upstream `thypon/eLauncher` targets API 24+. A backport branch for API 19 lives at:
+  - <https://github.com/v4rgas/eLauncher/tree/kitkat-api19>
+
+  It downgrades AGP / Gradle / AndroidX, guards the API 21+ UsageStats and status-bar-color paths, replaces Java 8 stream / `Iterable.forEach` / `ArrayList.sort` usage with KitKat-safe equivalents, and substitutes literal colors for `?attr/...` references inside drawable XML (drawable theme-attr resolution is API 21+). The home grid was also changed from a fixed 8-slot placeholder layout to "assigned slots + trailing `+`" so the device is useful without filling all eight tiles.
+
+  Build (requires Android SDK platform-19/28, build-tools 30.0.3, JDK 17):
+  ```sh
+  ANDROID_HOME=/opt/android-sdk JAVA_HOME=/usr/lib/jvm/java-17-openjdk ./gradlew assembleRelease
+  adb install app/build/outputs/apk/release/app-release.apk
+  ```
+
+### Things that did NOT work
+
+For context when picking other software on this device:
+
+- Modern e-ink launchers (Olauncher, Niagara, LessPhone, Einkify, unmodified eLauncher) all require API 23-26+ and fail with `INSTALL_FAILED_OLDER_SDK`.
+- Recent KISS Launcher (F-Droid `fr.neamar.kiss_222.apk`) also fails the SDK check; older KISS builds with `minSdk <= 19` are needed if you want to try that route.
+
 ## Sources
 
 - Netronix E60QR2 public product specs identify the hardware class: i.MX6SoloLite, Android, 1440x1080 e-ink.
