@@ -240,7 +240,7 @@ Apps tested on this build (Android 4.4.2, API 19, ARMv7):
   ```
   Releases: <https://github.com/koreader/koreader/releases>
 
-- **eLauncher**, KitKat backport at <https://github.com/v4rgas/eLauncher/tree/kitkat-api19>. Upstream needs API 24, so this branch downgrades AGP/Gradle/AndroidX, guards the API 21+ calls (UsageStats, status bar color, the usage-access intent), swaps Java 8 stream/`forEach`/`ArrayList.sort` for KitKat-safe loops, and replaces `?attr/...` inside drawable XML with literal colors (drawable theme attrs only resolve from API 21). Home grid was also changed to render only assigned slots plus a `+` tile, since the original assumes you have 8 favorites.
+- **eLauncher**, KitKat backport at <https://github.com/v4rgas/eLauncher/tree/kitkat-api19>. Upstream needs API 24, so this branch downgrades AGP/Gradle/AndroidX, guards the API 21+ calls (UsageStats, status bar color, the usage-access intent), swaps Java 8 stream/`forEach`/`ArrayList.sort` for KitKat-safe loops, and replaces `?attr/...` inside drawable XML with literal colors (drawable theme attrs only resolve from API 21).
 
   Build:
   ```sh
