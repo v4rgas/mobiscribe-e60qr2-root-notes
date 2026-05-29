@@ -1,0 +1,17 @@
+# Local device artifacts and third-party binaries.
+*.img
+*.apk
+*.zip
+*.so
+*.dex
+*.jar
+backups*/
+tmp*/
+
+# Logs may include serial numbers, paths, and local state.
+*.log
+
+# Editor/OS noise.
+.DS_Store
+*.swp
+*~
