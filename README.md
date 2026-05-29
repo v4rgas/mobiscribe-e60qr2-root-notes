@@ -69,8 +69,8 @@ version: 0.5
 
 Do not commit these binaries to this repo. Download and verify them locally:
 
-- `twrp-ntx_6sl.img`: TWRP image from the `nook_ntx_6sl_twrp` release.
-- `SuperSU-v2.82-201705271822.zip`: Chainfire SuperSU v2.82 stable ZIP.
+- `twrp-ntx_6sl.img`: TWRP image from Ryogo-Z's `nook_ntx_6sl_twrp` release.
+- `SuperSU-v2.82-201705271822.zip`: Chainfire SuperSU v2.82 stable ZIP. This ZIP contains the `Superuser.apk`, `su`, `daemonsu`, and related binaries installed by TWRP.
 
 Known checksum for the SuperSU ZIP used:
 
@@ -83,6 +83,21 @@ The TWRP image used locally was:
 ```text
 sha256: 13ba8836f76dd6fc5c4991923a340a534f056c80c9a95f0df61d7b221620c246
 ```
+
+## Credits and Sources
+
+This procedure combines local testing on the device with third-party tools and public community notes. The binaries and background material are not original work from this repo.
+
+| Item | What it was used for | Source / credit |
+| --- | --- | --- |
+| Netronix E60QR2 hardware information | Confirmed the device family: E60QR2, 6.8 inch EPD, Android, 1440x1080, i.MX6SoloLite-class hardware | Netronix product page: <https://www.netronixinc.com/products.aspx?ID=4> |
+| `twrp-ntx_6sl.img` / TWRP for `ntx_6sl` | Temporarily booted recovery with `fastboot boot`; provided root recovery ADB | Ryogo-Z `nook_ntx_6sl_twrp` releases: <https://github.com/Ryogo-Z/nook_ntx_6sl_twrp/releases> |
+| TWRP community notes | Helped identify that related `ntx_6sl` e-readers use `adb reboot fastboot`, and that fastboot/TWRP can work across related Netronix/Nook devices | MobileRead TWRP thread: <https://www.mobileread.com/forums/showthread.php?t=292026> |
+| MobiScribe 1st gen compatibility note | Community report that this TWRP also works on MobiScribe 1st gen | XDA thread, `[GP, G3, GP7.8] TWRP & alternative firmware`: <https://xdaforums.com/t/gp-g3-gp7-8-twrp-alternative-firmware.4074347/> |
+| SuperSU v2.82 ZIP | Installed persistent Android 4.4 root; this package supplied `Superuser.apk`, `su`, `daemonsu`, `supolicy`, and `install-recovery.sh` | Chainfire/XDA SuperSU v2.82 thread: <https://xdaforums.com/t/stable-2017-05-27-supersu-v2-82.3452703/> |
+| SuperSU ZIP mirror used locally | The original Chainfire/S3 URL did not serve the ZIP during this run, so a mirror was used and verified by the known MD5 | Mirror URL used locally: <https://supersuroot.org/downloads/SuperSU-v2.82-201705271822.zip>; expected MD5: `8755c94775431f20bd8de368a2c7a179` |
+
+Local observations in this document, such as the exact build fingerprint, partition mapping, fastboot behavior, TWRP UI freeze, and final `su -c id` result, came from commands run directly against the tested MobiScribe E60QR2.
 
 ## Temporary TWRP Boot
 
