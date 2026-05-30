@@ -240,7 +240,7 @@ Apps tested on this build (Android 4.4.2, API 19, ARMv7):
   ```
   Releases: <https://github.com/koreader/koreader/releases>
 
-- **eLauncher**, KitKat backport at <https://github.com/v4rgas/eLauncher/tree/kitkat-api19>. Upstream needs API 24, so this branch downgrades AGP/Gradle/AndroidX, guards the API 21+ calls (UsageStats, status bar color, the usage-access intent), swaps Java 8 stream/`forEach`/`ArrayList.sort` for KitKat-safe loops, and replaces `?attr/...` inside drawable XML with literal colors (drawable theme attrs only resolve from API 21).
+- **Postscribe**, KitKat/API 19 fork of eLauncher at <https://github.com/v4rgas/Postscribe/tree/kitkat-api19>. Upstream eLauncher needs API 24; this branch downgrades AGP/Gradle/AndroidX, guards the API 21+ calls (UsageStats, status bar color, the usage-access intent), swaps Java 8 stream/`forEach`/`ArrayList.sort` for KitKat-safe loops, replaces `?attr/...` inside drawable XML with literal colors (drawable theme attrs only resolve from API 21), and adds MobiScribe-focused tools such as a developer panel and built-in HTTP file server.
 
   Build:
   ```sh
